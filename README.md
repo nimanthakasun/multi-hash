@@ -1,5 +1,5 @@
 # Multi Level Hashing
-A multi level hashing system using OpenSSL. \
+A multi level hashing system using OpenSSL.
 ## A word for contributors
 If you are a developer, make a branch from `multihash_dev` branch for your development. Once you are done, do a PR to `multihash_dev` branch and select me as a reviewer. I'll merge the changes. \
 This is a Visual Studio Solution. I used VS 2022 for all the developments\
