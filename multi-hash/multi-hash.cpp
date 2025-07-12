@@ -13,20 +13,49 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 */
+#ifdef _DEBUG
+//#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+#endif
 
 #include "MultiHash.h"
 
+
 int main() {
+    //_CrtSetDbgFlag(_CRTDBG)
     // Example Primary Account Number (PAN)
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     std::string PAN = "1234567890123456";
     std::string fixedValue = "SECRET_KEY";
     std::string input = PAN + fixedValue;
 
-    std::cout << input << std::endl;
+    std::cout << "Input Text: " << input << std::endl;
 
     MultiHash hashGenerator;
-    std::cout << hashGenerator.GetHashAsHexString(input) << std::endl;
-    std::cout << hashGenerator.GetHashRaw(input) << std::endl;
+    std::string GenratedHash = hashGenerator.GetHashAsHexString(input);
+    std::cout << GenratedHash << std::endl;
+
+
+    ////////////////////////////////////////////////////////////////////////////////////
+    //unsigned char hash[SHA256_DIGEST_LENGTH];
+    //const char* charInput = input.c_str();
+    //const unsigned char* formattedCharInput = reinterpret_cast<const unsigned char*>(charInput);
+
+    ////SHA256_Init()
+    //unsigned char* encryptedData = SHA256(formattedCharInput, input.length(), hash);
+
+    //// Convert hash to hex string
+    //std::stringstream ss;
+    //for (int i = 0; i < SHA256_DIGEST_LENGTH; ++i) {
+    //    ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(hash[i]);
+    //}
+
+    //std::string cvv = ss.str();
+    //// Display the generated CVV
+    //std::cout << "Generated CVV: " << cvv << std::endl;
+
+    _CrtDumpMemoryLeaks();
 
     return 0;
 }
